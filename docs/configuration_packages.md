@@ -216,9 +216,17 @@ All query parameters are optional
 
 Function: Returns the configuration packages under the specified user and that are compatible with the specified appPackageName, appPackageVersion and appName.
 
-### GET /ws/v2/configPackages/```<user>```/```<name>``` 
+### GET /ws/v2/configPackages/```<user>```/```<app-pkg-name>```/```<app-pkg-version>```[?includeDescription={true/false}] 
 
-Function: Returns the information of the specified configuration package
+Function: Returns the information of the specified configuration package. If `includeDescription` is set to be false or 
+not provided, property information returned is in simple name-value pairs format. If `includeDescription` 
+is true, properties will also include description information as well.
+
+### GET /ws/v2/configPackages/```<user>```/```<app-pkg-name>```/```<app-pkg-version>```/application[?includeDescription={true/false}] 
+
+Function: Returns only the information about `application` of the specified configuration package. If `includeDescription` is set to be false or 
+not provided, property information returned is in simple name-value pairs format. If `includeDescription` 
+is true, properties will also include description information as well.
 
 ### GET /ws/v2/configPackages/```<user>```/```<name>```/download 
 

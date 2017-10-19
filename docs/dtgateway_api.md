@@ -1679,13 +1679,15 @@ Since: 1.0.4
 
 Function: Downloads the appPackage zip file
 
-### GET /ws/v2/appPackages/{owner}/{packageName}/{packageVersion}
+### GET /ws/v2/appPackages/{owner}/{packageName}/{packageVersion}[?includeDescription={true/false}]
 
 Since: 1.0.4
 
 Function: Gets the meta information of the app package
 
-Returns:
+Returns: If `includeDescription` is set to be false or not provided, return meta data for such app package with 
+properties as simple name-value pairs. If `includeDescription` is true, properties will also include description 
+information as well.
 
 ```json
 {
@@ -1764,20 +1766,22 @@ Returns:
 }
 ```
 
-### GET /ws/v2/appPackages/{owner}/{packageName}/{packageVersion}/applications/{appName}
+### GET /ws/v2/appPackages/{owner}/{packageName}/{packageVersion}/applications/{appName}[?includeDescription={true/false}]
 
 Since: 1.0.4
 
 Function: Gets the meta data for that application
 
-Returns:
+Returns: If `includeDescription` is set to be false or not provided, return meta data for such application with 
+properties as simple name-value pairs. If `includeDescription` is true, properties will also include description 
+information as well.
 
 ```json
 {
     "file": "{fileName}",
     "name": "{name}",
     "type": "{json/class/properties}",
-    "error": "{error}"
+    "error": "{error}",
     "dag": {
         "operators": [
           {
@@ -1795,7 +1799,12 @@ Returns:
                   }, ...
             ],
             "properties": {
-               "{propertyName}": "{propertyValue}"
+               "{propertyName}": "{propertyValue}" // when includeDescription=false
+               // or
+               "{propertyName}": {
+                  "value":"{propertyValue}",
+                  "description":"{propertyDescription}"
+               }                                   // when includeDescription=true
             }
          }, ...
         ],
